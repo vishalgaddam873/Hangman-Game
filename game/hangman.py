@@ -1,3 +1,4 @@
+from images import IMAGES
 import random,string
 
 def play_again():
@@ -44,17 +45,22 @@ def hangman(list_of_words):
 						counter+=1
 
 					for numbers in position_list:
-						list2[numbers] = guess
+						list2[numbers] = guess.upper()
 						answer = "".join(list2)
 					print(answer)
 
 					available_letters.remove(guess)
-					chances -=1
 				else:
 					print("Incorrect Guess")
+					print(IMAGES[8 - chances])
+					if chances == 1:
+						print("You loss the game")
+						print("The Secret Word is " + secret_word)
+						print("")
 					chances -=1
-				if answer == secret_word:
+				if answer.lower() == secret_word:
 						print("you won the game")
+						print("")
 						break
 			else:
 				print("Please Enter one letter at time")
@@ -66,5 +72,5 @@ def hangman(list_of_words):
 	print(again)
 		
 
-words = ['mango','apple','london','america','lion','tigher','onion','bus','car','happy','beautiful','ugly']
+words = ['mango','apple','london','america','lion','tiger','onion','bus','car','happy','beautiful','ugly','headphone']
 hangman(words)
